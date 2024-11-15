@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service  # Import Service
 import time
 
 # Function to perform the Selenium task
@@ -16,9 +17,10 @@ def scrape_bond_yield():
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--disable-popup-blocking")
 
-    # Specify the path to chromedriver
+    # Specify the path to chromedriver using Service
     driver_path = '/usr/local/bin/chromedriver'  # This is where setup.sh places chromedriver
-    driver = webdriver.Chrome(executable_path=driver_path, options=chrome_options)
+    service = Service(driver_path)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     try:
         # Navigating to the page
