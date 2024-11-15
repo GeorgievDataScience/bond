@@ -3,24 +3,18 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service  # Import Service
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.firefox.service import Service
 import time
 
 # Function to perform the Selenium task
 def scrape_bond_yield():
-    # Setting up Chrome options for headless mode
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Run Chrome in headless mode
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-extensions")
-    chrome_options.add_argument("--disable-popup-blocking")
+    # Setting up Firefox options for headless mode
+    firefox_options = FirefoxOptions()
+    firefox_options.add_argument("--headless")  # Run Firefox in headless mode
 
-    # Specify the path to chromedriver using Service
-    driver_path = '/usr/local/bin/chromedriver'  # This is where setup.sh places chromedriver
-    service = Service(driver_path)
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    # Initialize the WebDriver for Firefox
+    driver = webdriver.Firefox(options=firefox_options)
 
     try:
         # Navigating to the page
@@ -72,3 +66,4 @@ if st.button("Scrape Data"):
     with st.spinner("Scraping data..."):
         result = scrape_bond_yield()
         st.write(result)
+
