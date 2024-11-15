@@ -3,17 +3,19 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 import time
 
 # Function to perform the Selenium task
 def scrape_bond_yield():
-    # Setup for the WebDriver (Using headless mode if desired)
-    options = webdriver.ChromeOptions()
-    options.add_argument('--headless')  # Run in headless mode if necessary
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+    # Setting up Chrome options for headless mode
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Run Chrome in headless mode
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
 
-    driver = webdriver.Chrome(options=options)
+    # Initialize the WebDriver
+    driver = webdriver.Chrome(options=chrome_options)
 
     try:
         # Navigating to the page
@@ -65,5 +67,3 @@ if st.button("Scrape Data"):
     with st.spinner("Scraping data..."):
         result = scrape_bond_yield()
         st.write(result)
-# %%
-
