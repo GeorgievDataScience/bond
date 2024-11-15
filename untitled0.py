@@ -13,9 +13,12 @@ def scrape_bond_yield():
     chrome_options.add_argument("--headless")  # Run Chrome in headless mode
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--disable-popup-blocking")
 
-    # Initialize the WebDriver
-    driver = webdriver.Chrome(options=chrome_options)
+    # Specify the path to chromedriver
+    driver_path = '/usr/local/bin/chromedriver'  # This is where setup.sh places chromedriver
+    driver = webdriver.Chrome(executable_path=driver_path, options=chrome_options)
 
     try:
         # Navigating to the page
