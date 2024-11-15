@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.common.exceptions import TimeoutException  # Import the exception
 import time
 
 def scrape_bond_yield():
@@ -37,4 +38,3 @@ st.title("Austria 10-Year Bond Yield Data Scraper")
 if st.button("Scrape Data"):
     with st.spinner("Scraping data..."):
         scrape_bond_yield()
-
