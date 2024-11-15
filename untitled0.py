@@ -38,7 +38,7 @@ def scrape_bond_yield():
             menu_item = WebDriverWait(driver, 20).until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR, ".historical-data-v2_menu-row__oRAlf:nth-child(2) > .historical-data-v2_menu-row-text__ZgtVH"))
             )
-            driver.execute_script("arguments[0].click();", menu_item)
+            driver.execute_script("arguments[1].click();", menu_item)
             st.write("Clicked on the menu item.")
         except TimeoutException:
             st.write("Timeout: Unable to find or interact with the menu item.")
